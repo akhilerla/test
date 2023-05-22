@@ -1,24 +1,8 @@
-name: CICD
-
 on:
+
   push:
     branches:
-      - main
-
-jobs:
-  OnMerge:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.base.ref, 'dev')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      
-      - name: Determine subdirectory
-        id: determine_subdirectory
-        run: |
-          echo "::set-output name=subdirectory::$(basename $GITHUB_WORKSPACE)"
-      
-      - name: Print subdirectory
-        run: |
-          echo "Subdirectory: ${{ steps.determine_subdirectory.outputs.subdirectory }}"
-
+    - main
+    paths:
+    - test1
+    
