@@ -3,8 +3,7 @@ on:
   push:
     branches:
     - main
-    paths:
-    - test1
+
     
 jobs:
   Explore-GitHub-Actions:
