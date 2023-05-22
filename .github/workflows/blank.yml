@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Determine subdirectory
+        id: determine_subdirectory
+        run: |
+          if [ -n "$GITHUB_WORKSPACE" ] && [ -n "$GITHUB_ACTION" ]; then
+            echo "::set-output name=subdirectory::$(basename $GITHUB_WORKSPACE)"
+          fi
+
+      - name: Print subdirectory name
+        run: echo "Subdirectory: ${{ steps.determine_subdirectory.outputs.subdirectory }}"
